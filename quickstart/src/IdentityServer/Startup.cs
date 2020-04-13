@@ -24,12 +24,12 @@ namespace IdentityServer
             // uncomment, if you want to add an MVC-based UI
             services.AddControllersWithViews();
 
-            services.AddAuthentication()
-                .AddGoogle("Google", options => {
-                    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                    options.ClientId = "240XXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
-                    options.ClientSecret = "";
-                });
+            //services.AddAuthentication()
+            //    .AddGoogle("Google", options => {
+            //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //        options.ClientId = "240XXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+            //        options.ClientSecret = "";
+            //    });
             
 
             var builder = services.AddIdentityServer()
