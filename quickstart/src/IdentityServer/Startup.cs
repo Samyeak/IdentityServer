@@ -24,6 +24,7 @@ namespace IdentityServer
             // uncomment, if you want to add an MVC-based UI
             services.AddControllersWithViews();
 
+            /* TODO: Didn't work currently over the google end, so postponing it for later :\ */
             //services.AddAuthentication()
             //    .AddGoogle("Google", options => {
             //        options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
