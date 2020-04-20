@@ -2,11 +2,12 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
-using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace IdentityServer
 {
@@ -31,7 +32,19 @@ namespace IdentityServer
             //        options.ClientId = "240XXXXXXX-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
             //        options.ClientSecret = "";
             //    });
+            var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
+            const string connectionString = "Server = 127.0.0.1; Port = 5432; Database = myDataBase; User Id = postgres; Password = badministrator;";
             
+            services.AddIdentityServer()
+                .AddTestUsers(TestUsers.Users)
+                .AddConfigurationStore(options => {
+                    options.ConfigureDbContext = b => b.UseNpgsql(connectionString, sql => sql.MigrationsAssembly(migrationAssembly));
+                })
+                .AddOperationalStore(options => {
+                    options.ConfigureDbContext = b => b.UseNpgsql(connectionString, sql => sql.MigrationsAssembly(migrationAssembly));
+                })
+                ;
+
 
             var builder = services.AddIdentityServer()
                 .AddInMemoryIdentityResources(Config.Ids)
