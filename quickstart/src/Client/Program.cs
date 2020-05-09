@@ -12,6 +12,7 @@ namespace Client
         {
             Console.WriteLine("Hello World!");
 
+
             DiscoveryDocumentResponse disco = await DiscoverEndpoints();
             if (disco.IsError)
             {

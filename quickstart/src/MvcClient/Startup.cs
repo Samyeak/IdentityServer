@@ -68,7 +68,8 @@ namespace MvcClient
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}")
                 //Same as [Authorize] attribute, but for whole application
-                .RequireAuthorization();
+                .RequireAuthorization()
+                ;
             });
         }
     }
