@@ -13,10 +13,11 @@ pool:
 steps:
 - script: echo Hello, world!
 - task: DotNetCoreCLI@2
+  displayName: 'Build Projects'
   inputs:
     command: 'build'
     projects: '**/*.csproj'
-  displayName: 'Run a one-line script'
+    arguments: '-f netcoreapp3.1'
 - task: DotNetCoreCLI@2
   inputs:
     command: 'publish'
